@@ -14,7 +14,7 @@ This document gives a brief description of the http endpoints available via the 
         + [_groups action](#group-groups)
         + [_researchers action](#group-researchers)
     - [DELETE group](#delete-group)
-* [Researcher endpoints](#researcher-endpoints)
+* [Researcher endpoints](#-endpoints)
     - [PUT researcher](#put-researcher)
     - [GET researcher](#get-researcher)
         + [_display action](#researcher-display)
@@ -510,7 +510,7 @@ The researcher endpoints provide functions for adding, updating, retrieving and 
 <a name="put-researcher"/>
 ## PUT researcher
 
-You can create or update a researcher using an HTTP PUT method at the `/r/` endpoint. To attempt to create a new researcher, the JSON object should be uploaded with a `_version` of `0`. To attempt to modify an existing researcher the JSON object should be uploaded with a the current `_version` of the researcher as retrieved using a GET command or previous PUT command response.
+You can create or update a researcher using an HTTP PUT method at the `/r/` endpoint. To attempt to create a new researcher, the JSON object should be uploaded with a `_version` of `0`. To attempt to modify an existing researcher the JSON object should be uploaded with a the current `_version` of the researcher as retrieved using a GET command or previous PUT command response. You can see the full list of supported biographical fields and identifier contributions in the Appendix.
 
 #### Example 1 - create new researcher
 
@@ -847,7 +847,7 @@ Assuming all went well, the response should look like:
 ```
 
 <a name="metric-types"/>
-# Appendix: Metric Types
+# Appendix A: Metric Types
 
       BOOKMARK_COUNT        => Bookmarks
       FAVORITE_COUNT        => Favorites
@@ -896,3 +896,213 @@ Assuming all went well, the response should look like:
       LINK_OUTS             => Link-outs
       SAMPLE_DOWNLOADS      => Sample Downloads
       EXPORTS_SAVES         => Exports-Saves
+
+<a name="researcher-fields"/>
+# Appendix B: Researcher Fields
+## personData  
+**Researcher Name**  
+```
+"name": {
+      "firstName": "John",
+      "lastName": "Smith",
+      "prefix": "Dr.",
+      "display": "Dr. John Jay Smith Jr.",
+      "degree": "PhD",
+      "middleName": "Jay",
+      "suffix": "Jr."
+    },
+*display is required and is the only field displayed in the profile.
+```
+**Education**  
+```
+"education": [
+      {
+        "schoolName": "University of Washington",
+        "startDate": "2002",
+        "endDate": "2004",
+        "degree": "B.S.",
+        "fieldOfStudy": "Biology",
+        "note": [
+               "Advisor: Dr. Jones"
+        ],
+        "society": [
+               "Oozma Kappa"
+        ],
+        "activity": [
+              "Teaching Assistant",
+              "Secretary of Student Body"
+          ]
+      }
+   ],
+*schoolName and startDate are required fields.
+*information is not displayed in profile
+```
+
+**Experience**  
+```
+    "affiliation": [
+      {
+        "companyName": "World Bank",
+        "endDate": "2010-08-01",
+        "isCurrent": "true",
+        "location": "Washington, D.C.",
+        "position": "Lead Researcher",
+        "startDate": "2006-03-01"
+      }
+    ],
+*companyName is required
+*information is not displayed in profile
+```
+
+**External Links**  
+```
+"profileLink": [
+      {
+        "displayName": "Faculty Profile",
+        "profileLinkType": "UNKNOWN",
+        "uri": "http://uw.edu/faculty/jsmith"
+      },
+*all fields are required
+*links are displayed in profile
+``` 
+
+**Other**  
+```
+"biography": "<p>Dr. Smith has been with the Institute since 1999...basic HTML tags supported.</p>",
+"headline": "Assistant Professor",
+"birthDate": "1960-03-01",
+"birthPlace": "London, Ontario, Canada",
+"email": "john@smith.edu",
+"phoneNumber": "1-234-424-4444" 
+  },
+*headline and biography are displayed in profile; other fields hidden for privacy
+```
+
+## Researcher-Level Contribution Types 
+**Institutional Repositories profile or search links - Supported for PlumX customers with active implementations.**
+```
+  "contribution": {
+    "bepressAuthorUrlId": [
+      "http://works.bepress.com/jane_smith"
+    ],
+    "bepressDcAuthorUrlId": [
+      "http://digitalcommonsURL/do/search/?q=author_lname%3A\"Smith\"%20author_fname%3A\"Jane\""
+    ],
+    "dSpaceAuthorUrlId": [
+      "http://dspaceURL/browse?type=author&value=Smith,%20Jane\""
+    ],
+    "eprintSearchUrl": [
+      "http://eprintURL/cgi/search/advanced?&_action_search=Search&creators_name_merge=ALL&creators_name=Smith%2C+Jane\""
+    ],
+    "vivoUrlId": [
+      "http://vivoURL/display/ne000ab"
+    ]
+  },
+```
+
+**Supported for all PlumX profiles as long as the profiles/links are publicly available**
+```
+  "contribution": {
+    "githubUserId": [
+      "janesmith"
+    ],
+    "orcid": [
+      "0000-0001-1111-1111"
+    ],
+    "rssFeedUrlId": [
+      "https://janesmithblog.wordpress.com/feed"
+    ],
+    "slideshareUserId": [
+      "janesmith"
+    ],
+    "repecAuthorUrlId": [
+      "https://ideas.repec.org/e/ppl89.html"
+    ],
+    "ssrnAuthorId": [
+      "210923"
+    ],
+    "vimeoUserId": [
+      "janesmith"
+    ],
+    "vimeoChannelId": [
+      "mychannel"
+    ],
+    "vivoUrlId": [
+      "http://vivoURL/display/ne000ab"
+    ]
+    "youtubeUserId": [
+      "PlumAnalytics",
+      "Altmetric"
+    ],
+  },
+```
+
+**Supported for institutions with active subscriptions to Elsevier Scopus.**
+```
+  "contribution": {
+    "scopusAuthorId": [
+      "6501234567"
+    ]
+  },
+```
+## Artifact-Level Contribution Types
+```
+  "contribution": {
+    "arxivId": [
+      "1104.3263"
+    ],
+    "doi": [
+      "10.1080/0361526x.2014.879524",
+      "10.1016/j.chb.2014.03.023"
+    ],
+    "dryadParentDoi": [
+      "10.5061/dryad.q447c"
+    ],
+    "figshareArticleId": [
+      "3380671"
+    ],
+    "githubRepoId": [
+      "repositoryName"
+    ],
+    "isbn": [
+      "9780312306342"
+    ],
+    "nctId": [
+      "NCT01234567"
+    ],
+    "oclc": [
+      "262787422"
+    ],
+    "pmid": [
+      "27507527"
+    ],
+    "pmcid": [
+      "PMC3788040"
+    ],
+    "repecHandle": [
+      "repec:ags:midagr:11111"
+    ],
+    "sourceforgeRepoId": [
+      "repositoryName"
+    ],
+    "ssrnId": [
+      "2239519"
+    ],
+    "urlId": [
+      "http://d-scholarship.edu/21573",
+      "https://theconversation.com/link-to-article",
+    ],
+    "usPatentPublicationId": [
+      "1234567"
+    ],
+    "vimeoAlbumId": [
+      "1234567"
+    ],
+    "vimeoGroupId": [
+      "janesgroup"
+    ],
+    "vimeoVideoId": [
+      "12341234"
+    ],
+  },
+```
