@@ -24,7 +24,8 @@ This document gives a brief description of the http endpoints available via the 
     - [DELETE researcher](#delete-researcher)
 * [Artifact endpoints](#artifact-endpoints)
     - [GET artifact](#get-artifact)
-* [Appendix: Metric Types](#metric-types)
+* [Appendix A: Metric Types](#metric-types)
+* [Appendix B: Researcher Fields](#researcher-fields)
 
 <a name="authenticiation"/>
 # Authentication
