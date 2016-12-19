@@ -14,7 +14,7 @@ This document gives a brief description of the http endpoints available via the 
         + [_groups action](#group-groups)
         + [_researchers action](#group-researchers)
     - [DELETE group](#delete-group)
-* [Researcher endpoints](#-endpoints)
+* [Researcher endpoints](#researcher-endpoints)
     - [PUT researcher](#put-researcher)
     - [GET researcher](#get-researcher)
         + [_display action](#researcher-display)
