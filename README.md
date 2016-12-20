@@ -562,21 +562,18 @@ curl -H "Content-Type: application/json" -XPUT 'https://api.plu.mx/r/test-resear
   "parent":[
     "test-institute-1/test-department-1/test-lab-1"
   ],
-  "contribution":[
-    {
-      "id":"10.1260/095830507782616887",
-      "type":"doi"
-    },
-    {
-      "id":"10.1177/0273475306288399",
-      "type":"doi"
-    }
-  ],
-  "profile":{
-    "name":"Test Researcher1",
-    "summary":"Short biography for Test Researcher1",
-    "url":"http://url.of.test-institute1.com/department1/lab1/researcher1"
-  }
+  "contribution":{
+    "doi": ["10.1260/095830507782616887", "10.1177/0273475306288399"]
+  },
+  "personData":{
+    "name": {"display": "Test Researcher1"},
+    "headline":"Short biography for Test Researcher1",
+    "profileLink": [{
+      "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
+      "profileLinkCategory": "PORTFOLIO",
+      "profileLinkType": "UNKNOWN"                                        
+    }] 
+  } 
 }
 ```
 ```
@@ -608,21 +605,21 @@ Assuming all went well, the response should look like:
 {
   "id" : "test-researcher-1",
   "_version" : 2,
-  "contribution" : [ {
-    "id" : "10.1260/095830507782616887",
-    "type" : "doi"
-  }, {
-    "id" : "10.1177/0273475306288399",
-    "type" : "doi"
-  } ],
+  "contribution":{
+    "doi": ["10.1260/095830507782616887", "10.1177/0273475306288399"]
+  },
   "parent" : [ "test-institute-1/test-department-1/test-lab-1" ],
   "type" : "researcher",
-  "ancestor" : [ "test-institute-1", "test-institute-1/test-department-1/test-lab-1", "test-institute-1/test-department-1" ],
-  "profile" : {
-    "summary" : "Short biography for Test Researcher1",
-    "name" : "Test Researcher1",
-    "url" : "http://url.of.test-institute1.com/department1/lab1/researcher1"
-  }
+  "ancestor" : [ "test-institute-1",  "test-institute-1/test-department-1", "test-institute-1/test-department-1/test-lab-1" ],
+  "personData":{
+    "name": {"display": "Test Researcher1"},
+    "headline":"Short biography for Test Researcher1",
+    "profileLink": [{
+      "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
+      "profileLinkCategory": "PORTFOLIO",
+      "profileLinkType": "UNKNOWN"                                        
+    }] 
+  } 
 }
 ```
 
@@ -660,57 +657,58 @@ Assuming all went well, the response should look like:
   "id" : "test-researcher-1",
   "artifact" : [ ],
   "_version" : 2,
-  "contribution" : [ {
-    "id" : "10.1260/095830507782616887",
-    "type" : "doi"
-  }, {
-    "id" : "10.1177/0273475306288399",
-    "type" : "doi"
-  } ],
+  "contribution":{
+    "doi": ["10.1260/095830507782616887", "10.1177/0273475306288399"]
+  },
   "parent" : [ "test-institute-1/test-department-1/test-lab-1" ],
   "type" : "researcher",
-  "ancestor" : [ {
-    "id" : "test-institute-1",
-    "_version" : 1,
-    "contribution" : [ ],
-    "parent" : null,
-    "type" : "institution",
-    "ancestor" : [ ],
-    "profile" : {
-      "summary" : "Short description about Test Institute One Display Name",
-      "name" : "Test Institute One Display Name",
-      "url" : "http://url.of.test-institute1.com"
-    }
-  }, {
-    "id" : "test-institute-1/test-department-1/test-lab-1",
-    "_version" : 1,
-    "contribution" : [ ],
-    "parent" : "test-institute-1/test-department-1",
-    "type" : "lab",
-    "ancestor" : [ "test-institute-1", "test-institute-1/test-department-1" ],
-    "profile" : {
-      "summary" : "Short description about Test Lab One Display Name",
-      "name" : "Test Lab One Display Name",
-      "url" : "http://url.of.test-institute1.com/department1/lab1"
-    }
-  }, {
-    "id" : "test-institute-1/test-department-1",
-    "_version" : 1,
-    "contribution" : [ ],
-    "parent" : "test-institute-1",
-    "type" : "department",
-    "ancestor" : [ "test-institute-1" ],
-    "profile" : {
-      "summary" : "Short description about Test Department One Display Name",
-      "name" : "Test Department One Display Name",
-      "url" : "http://url.of.test-institute1.com/department1"
-    }
-  } ],
-  "profile" : {
-    "summary" : "Short biography for Test Researcher1",
-    "name" : "Test Researcher1",
-    "url" : "http://url.of.test-institute1.com/department1/lab1/researcher1"
-  }
+  "ancestor": [
+    {
+      "id": "test-institute-1",
+      "_type": "group",
+      "_version": 2,
+      "parent": null,
+      "groupType": "INSTITUTION",
+      "contribution": {},
+      "sortName": "testinstitute1",
+      "ancestor": [],
+      "name": "Test Institute One Display Name",
+      "description": "Short description about Test Institute One",
+    },
+    {
+      "id": "test-institute-1/test-department-1",
+      "_type": "group",
+      "_version": 2,
+      "parent": "test-institute-1",
+      "groupType": "DEPARTMENT",
+      "contribution": {},
+      "sortName": "testdepartment1",
+      "ancestor": [ "test-institute-1" ],
+      "name": "Test Department One Display Name",
+      "description": "Short description about Test Department One",
+    },
+    {
+      "id": "test-institute-1/test-department-1/test-lab-1",
+      "_type": "group",
+      "_version": 2,
+      "parent": "test-institute-1/test-department-1",
+      "groupType": "LAB",
+      "contribution": {},
+      "sortName": "testlab1",
+      "ancestor": [ "test-institute-1", "test-institute-1/test-department-1" ],
+      "name": "Test Lab One Display Name",
+      "description": "Short description about Test Lab One",
+    } 
+  ], 
+  "personData":{
+    "name": {"display": "Test Researcher1"},
+    "headline":"Short biography for Test Researcher1",
+    "profileLink": [{
+      "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
+      "profileLinkCategory": "PORTFOLIO",
+      "profileLinkType": "UNKNOWN"                                        
+    }] 
+  } 
 }
 ```
 Notice that this returns more than a raw GET request for `test-researcher-1` when `/_display` is added.
@@ -728,33 +726,34 @@ Assuming all went well, the response should look like:
   "id" : "test-researcher-1",
   "artifact" : [ ],
   "_version" : 2,
-  "contribution" : [ {
-    "id" : "10.1260/095830507782616887",
-    "type" : "doi"
-  }, {
-    "id" : "10.1177/0273475306288399",
-    "type" : "doi"
-  } ],
+  "contribution":{
+    "doi": ["10.1260/095830507782616887", "10.1177/0273475306288399"]
+  },
   "parent" : [ "test-institute-1/test-department-1/test-lab-1" ],
   "type" : "researcher",
-  "ancestor" : [ {
-    "id" : "test-institute-1",
-    "_version" : 1,
-    "contribution" : [ ],
-    "parent" : null,
-    "type" : "institution",
-    "ancestor" : [ ],
-    "profile" : {
-      "summary" : "Short description about Test Institute One Display Name",
-      "name" : "Test Institute One Display Name",
-      "url" : "http://url.of.test-institute1.com"
-    }
-  } ],
-  "profile" : {
-    "summary" : "Short biography for Test Researcher1",
-    "name" : "Test Researcher1",
-    "url" : "http://url.of.test-institute1.com/department1/lab1/researcher1"
-  }
+  "ancestor": [
+    {
+      "id": "test-institute-1",
+      "_type": "group",
+      "_version": 2,
+      "parent": null,
+      "groupType": "INSTITUTION",
+      "contribution": {},
+      "sortName": "testinstitute1",
+      "ancestor": [],
+      "name": "Test Institute One Display Name",
+      "description": "Short description about Test Institute One",
+    },
+  ],
+  "personData":{
+    "name": {"display": "Test Researcher1"},
+    "headline":"Short biography for Test Researcher1",
+    "profileLink": [{
+      "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
+      "profileLinkCategory": "PORTFOLIO",
+      "profileLinkType": "UNKNOWN"                                        
+    }] 
+  } 
 }
 ```
 Notice a few things about this:
