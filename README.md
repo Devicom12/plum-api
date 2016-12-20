@@ -530,8 +530,8 @@ curl -H "Content-Type: application/json" -XPUT 'https://api.plu.mx/r/test-resear
     "name": {"display": "Test Researcher1"},
     "headline":"Short biography for Test Researcher1",
     "profileLink": [{
+      "displayName":"Faculty Profile",
       "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
-      "profileLinkCategory": "PORTFOLIO",
       "profileLinkType": "UNKNOWN"                                        
     }] 
   }       
@@ -569,8 +569,8 @@ curl -H "Content-Type: application/json" -XPUT 'https://api.plu.mx/r/test-resear
     "name": {"display": "Test Researcher1"},
     "headline":"Short biography for Test Researcher1",
     "profileLink": [{
+      "displayName":"Faculty Profile",
       "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
-      "profileLinkCategory": "PORTFOLIO",
       "profileLinkType": "UNKNOWN"                                        
     }] 
   } 
@@ -615,8 +615,8 @@ Assuming all went well, the response should look like:
     "name": {"display": "Test Researcher1"},
     "headline":"Short biography for Test Researcher1",
     "profileLink": [{
+      "displayName":"Faculty Profile",
       "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
-      "profileLinkCategory": "PORTFOLIO",
       "profileLinkType": "UNKNOWN"                                        
     }] 
   } 
@@ -704,8 +704,8 @@ Assuming all went well, the response should look like:
     "name": {"display": "Test Researcher1"},
     "headline":"Short biography for Test Researcher1",
     "profileLink": [{
+      "displayName":"Faculty Profile",
       "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
-      "profileLinkCategory": "PORTFOLIO",
       "profileLinkType": "UNKNOWN"                                        
     }] 
   } 
@@ -749,8 +749,8 @@ Assuming all went well, the response should look like:
     "name": {"display": "Test Researcher1"},
     "headline":"Short biography for Test Researcher1",
     "profileLink": [{
+      "displayName":"Faculty Profile",
       "uri": "http://url.of.test-institute1.com/department1/lab1/researcher1",
-      "profileLinkCategory": "PORTFOLIO",
       "profileLinkType": "UNKNOWN"                                        
     }] 
   } 
