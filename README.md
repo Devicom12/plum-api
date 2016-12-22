@@ -515,14 +515,14 @@ You can create or update a researcher using an HTTP PUT method at the `/r/` endp
 
 #### Example 1 - create new researcher
 
-Here is an example of creating a new researcher that is not associated with any groups:
+Here is an example of creating a new researcher that is not associated with any groups. It is important to note that the parent value provided must be the PlumX site value for your implementation:
 ```
 curl -H "Content-Type: application/json" -XPUT 'https://api.plu.mx/r/test-researcher-1?pretty=true' -d '
 ```
 ```json
 {         
   "_version":0,
-  "parent":[],
+  "parent":["test-site"],
   "contribution":{
     "doi": ["10.1260/095830507782616887", "10.1177/0273475306288399"]
   },   
